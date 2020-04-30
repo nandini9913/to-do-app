@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import FlipMove from "react-flip-move";
+/*import FlipMove from "react-flip-move";
+import ReactTooltip from "react-tooltip";*/
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class TodoItems extends Component {
   constructor(props) {
@@ -13,8 +15,18 @@ class TodoItems extends Component {
   }
 
     createTasks(item) {
-      return  <li onClick={() => this.delete(item.key)} 
-      key={item.key}>{item.text}</li>
+      return  <p key={item.key} ><textarea type="text" id={item.key}
+      value={item.text} onChange={
+        (e) =>{
+          this.props.setUpdate(e.target.value, item.key)
+        }
+      }  /> 
+       
+       <span>
+              <FontAwesomeIcon className="faicons" icon='trash' onClick={() => this.delete(item.key)}  />
+        </span>
+      
+      </p>
     }
    
     render() {
@@ -22,16 +34,16 @@ class TodoItems extends Component {
       var listItems = todoEntries.map(this.createTasks);
    
       return (
-        <ul className="theList">
-
-           <FlipMove duration={800} easing="ease-out">
-             <div>
-                         {listItems}
-             </div>
-          </FlipMove>
-        </ul>
+              <div className="theList"> 
+                  {listItems} 
+            
+              </div>
+           
+        
       );
     }
+    
   };
+  
    
   export default TodoItems;

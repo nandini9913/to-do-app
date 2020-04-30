@@ -1,11 +1,23 @@
-
-.todoListMain .header input {
+.todoListMain
+{
+  height:100%;
+  width:95%;
+  
+}
+.todoListMain .header
+{
+  margin-left:8%;
+}
+.todoListMain .header input
+ {
     padding: 10px;
     font-size: 16px;
     border: 2px solid rgba(14, 1, 1, 0.767);
     width: 200px;
+    
   }
-  .todoListMain .header button {
+  .todoListMain .header button 
+  {
     padding: 10px;
     font-size: 16px;
     margin: 10px;
@@ -14,55 +26,69 @@
     color: #FFF;
     border: 2px solid #0066FF;
   }
-  .todoListMain .header button:hover {
+  .todoListMain .header button:hover 
+  {
     background-color: #003399;
     border: 2px solid #003399;
     cursor: pointer;
   }
-  .todoListMain .theList {
-    list-style: none;
-    padding-left: 0;
-    width: 80%;
-    margin-left: 10%;
+  
+  .theList 
+  {
+   
+    padding: 2%;
+    
     text-align: justify;
-    float:left;
-  } 
-  .todoListMain .theList li {
-    color: #333;
-    background-color:rosybrown;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    list-style: none;
-    flex:1 1 auto;
-    width:20%;
-    display: inline;
-    margin-left: 20px;;
+    
+   
   }
-  ul.theList {
-    padding: 0;
+  .todoListMain .theList p {
+    color: #333;
+    background-color:rgba(255,255,56,.5);
+   overflow: auto;
+    padding: 18px;
+    margin-bottom: 45px;
+    border-radius: 5px;
+    width:18%;
+    height:100px;
+    display: inline-block;
+    margin-left: 4%;
+    position: relative;
   }
   
-    /*
-  .theList {
-    list-style: none;
-    width:80%;
-    padding: 2%;
-    margin-left:10%;
-    text-align: justify;
-   
-  } 
-  .theList li {
-    color: #333;
-    background-color: rgba(255,255,56,.5);
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    list-style: none;
-    width:20%;
-   text-align:center;
-    position: static;
-    display:inline-block;
-    margin-left:7px;
+
+  p .faicons{
+   float: right;
+   right:6px;
+   top:9px;
+   font-size: 14px;
+   color:black;
+   position: absolute;
+   cursor: pointer;
   }
-  */
+  p .faicons:hover{
+    font-size:16px;
+  }
+  p textarea{
+   background-color: transparent;
+    border:0;
+    overflow: hidden;
+    resize: none;
+    color:black;
+    font-family: 'Bowlby One SC', cursive;
+    font-size: 18px;
+    width:100%;
+    height:97%;
+    word-wrap: break-word;
+  }
+  p textarea:focus{
+    outline: none;
+  }
+  .todoListMain .theList p::-webkit-scrollbar {
+    display: none;
+}
+.todoListMain .theList p {
+  -ms-overflow-style: none;
+}
+  
+  

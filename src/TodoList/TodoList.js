@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import TodoItems from "./TodoItems";
 import "./TodoList.css";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faTrash);
 
 
 class TodoList extends Component{
@@ -8,11 +12,16 @@ class TodoList extends Component{
         super(props);
 
         this.state = {
-            items: []
+            items: [],
+            currentItem:{
+                text:'',
+                key:''
+            }
         };
-
+        this.handleInput = this.handleInput.bind(this);
         this.addItem = this.addItem.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
+        this.setUpdate = this.setUpdate.bind(this);
     }
     
     addItem(e)
@@ -32,7 +41,7 @@ class TodoList extends Component{
         }
         
         console.log(this.state.items);
-        e.preventDefault();
+        e.preventDefault();  //this will prevent refreshing again and again
     }
     deleteItem(key) {
         var filteredItems = this.state.items.filter(function (item) {
@@ -43,6 +52,31 @@ class TodoList extends Component{
           items: filteredItems
         });
       }
+      setUpdate(text, key)
+      {
+          const items = this.state.items;
+          items.map(item =>{
+              if(item.key===key){
+                  item.text=text;
+              }
+          })
+          this.setState(
+          {
+                items: items
+          })
+      }
+
+
+      handleInput(e)
+      {
+          this.setState({
+            currentItem:{
+                text:e.target.value,
+                key:Date.now()
+            }
+          })
+          
+      }
     render(){
     
         return(
@@ -50,13 +84,15 @@ class TodoList extends Component{
             <div className="todoListMain">
                 <div className="header">
                     <form onSubmit={this.addItem}>
-                        <input ref={(a) => this._inputelement = a} placeholder="Enter New task" >
-                         </input>
+                        <input ref={(a) => this._inputelement = a} placeholder="Enter New task" 
+                         />
+                        
                          <button type="submit">Add</button>   
                     </form>
                 </div>
                 <TodoItems entries={this.state.items}   
-                        delete={this.deleteItem} />
+                        delete={this.deleteItem}
+                        setUpdate ={this.setUpdate} />
               
             </div>
         );
