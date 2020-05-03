@@ -55,7 +55,7 @@ class TodoList extends Component{
       setUpdate(text, key)
       {
           const items = this.state.items;
-          items.map(item =>{
+          items.forEach(item => {
               if(item.key===key){
                   item.text=text;
               }
@@ -84,7 +84,7 @@ class TodoList extends Component{
             <div className="todoListMain">
                 <div className="header">
                     <form onSubmit={this.addItem}>
-                        <input ref={(a) => this._inputelement = a} placeholder="Enter New task" 
+                        <input ref={(a) => this._inputelement = a} placeholder="Enter New task" autoComplete="off"
                          />
                         
                          <button type="submit">Add</button>   
@@ -92,7 +92,7 @@ class TodoList extends Component{
                 </div>
                 <TodoItems entries={this.state.items}   
                         delete={this.deleteItem}
-                        setUpdate ={this.setUpdate} />
+                        setUpdate={this.setUpdate} />
               
             </div>
         );
