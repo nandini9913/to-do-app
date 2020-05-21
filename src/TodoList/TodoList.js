@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import TodoItems from "./TodoItems";
 import "./TodoList.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash} from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faTrash);
+library.add(faTrash , faPlus , faClipboardCheck , faEdit);
 
 
 class TodoList extends Component{
@@ -27,6 +31,7 @@ class TodoList extends Component{
     addItem(e)
     {
         if(this._inputelement!== ""){
+            
             var newItem = {
                 text: this._inputelement.value,
                 key: Date.now()
@@ -38,7 +43,10 @@ class TodoList extends Component{
             });
 
             this._inputelement.value = "";
+            this.state.value = "";
+          
         }
+       
         
         console.log(this.state.items);
         e.preventDefault();  //this will prevent refreshing again and again
@@ -83,11 +91,16 @@ class TodoList extends Component{
         
             <div className="todoListMain">
                 <div className="header">
-                    <form onSubmit={this.addItem}>
-                        <input ref={(a) => this._inputelement = a} placeholder="Enter New task" autoComplete="off"
-                         />
+                    <form >
+                    
+                    <span > 
+                    <FontAwesomeIcon className="fclip" icon="clipboard-check"  size="lg" />
+                    </span>
+                        <input ref={(a) => this._inputelement = a}  onChange={e => this.setState({ value: e.target.value })} value={this.state.value || ""}  placeholder="I want to do..." autoComplete="off" />
+                       
                         
-                         <button type="submit">Add</button>   
+                        
+                         <button disabled={!this.state.value}  onClick={this.addItem} ><FontAwesomeIcon className="faicons" icon="plus"   /></button>   
                     </form>
                 </div>
                 <TodoItems entries={this.state.items}   
@@ -97,6 +110,7 @@ class TodoList extends Component{
             </div>
         );
     }
+    
 }
 
 export default TodoList;

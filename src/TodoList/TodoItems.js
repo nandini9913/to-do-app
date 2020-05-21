@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-/*import FlipMove from "react-flip-move";
-import ReactTooltip from "react-tooltip";*/
+
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class TodoItems extends Component {
@@ -9,13 +9,14 @@ class TodoItems extends Component {
  
     this.createTasks = this.createTasks.bind(this);
   }
+  state = {date: new Date()}
 
   delete(key) {
     this.props.delete(key);
   }
 
     createTasks(item) {
-      return  <p key={item.key} ><textarea type="text" id={item.key}
+      return  <p key={item.key}><input type="text" id={item.key}
       value={item.text} onChange={
         (e) =>{
           this.props.setUpdate(e.target.value, item.key)
@@ -23,7 +24,9 @@ class TodoItems extends Component {
       }  /> 
        
        <span>
+             
               <FontAwesomeIcon className="faicons" icon='trash' onClick={() => this.delete(item.key)}  />
+              <span className="date">{this.state.date.toLocaleDateString()}</span>
         </span>
       
       </p>
@@ -34,10 +37,12 @@ class TodoItems extends Component {
       var listItems = todoEntries.map(this.createTasks);
    
       return (
+          
               <div className="theList"> 
-                  {listItems} 
-            
+               {listItems}  
+               
               </div>
+             
            
         
       );
